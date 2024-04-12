@@ -1,18 +1,18 @@
 <template>
   <div>
-    <!-- Include the ProductList component here -->
+    <!-- Include the ShoppingCart component here -->
     <ShoppingCart />
   </div>
 </template>
 
 <script>
-// Import the ProductList component
+// Import the ShoppingCart component
 import ShoppingCart from '@/components/ShoppingCart.vue'
 
 export default {
   name: 'ShoppingCartView',
   components: {
-    // Register the ProductList component
+    // Register the ShoppingCart component
     ShoppingCart
   }
 }

@@ -1,14 +1,12 @@
+import { createRouter, createWebHashHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import ProductListView from '../views/ProductListView.vue';
+import ShoppingCartView from '../views/ShoppingCartView.vue';
+import Login from '../views/LoginView.vue';
+import Register from '../views/RegisterView.vue';
+import store from '../store';
 
-
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ProductListView from '../views/ProductListView.vue'
-import ShoppingCartView from '../views/ShoppingCartView.vue'
-import Login from '../views/LoginView.vue'
-import Register from '../views/RegisterView.vue'
-import store from '../store'
-
-// routers
+// Define routes
 const routes = [
   {
     path: '/',
@@ -36,24 +34,24 @@ const routes = [
     name: 'register',
     component: Register
   }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
-})
+});
 
-// chinecheck kung logged in na or not
+// Check if the user is logged in or not
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const isLoggedIn = store.state.isLoggedIn;
 
   if (requiresAuth && !isLoggedIn) {
-
+    // Redirect to login page if authentication is required and user is not logged in
     next('/login');
   } else {
-    next(); 
+    next(); // Proceed to the next route
   }
-})
+});
 
-export default router
+export default router;

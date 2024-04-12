@@ -7,7 +7,7 @@
 
 <script>
 // Import the ProductList component
-import ProductList from '@/components/ProductList.vue'
+import ProductList from '@/components/ProductList.vue';
 
 export default {
   name: 'ProductListView',

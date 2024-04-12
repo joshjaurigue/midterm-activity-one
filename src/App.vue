@@ -1,4 +1,5 @@
 <template>
+  <!-- Navigation bar -->
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/products">Books</router-link> | 
@@ -7,19 +8,20 @@
     <router-link v-if="!isLoggedIn" to="/register">Register</router-link> 
     <button v-if="isLoggedIn" @click="logout" class="logout">Logout</button>
   </nav>
+  <!-- Router view for rendering different components -->
   <router-view/>
 </template>
 
 <script>
 export default {
   computed: {
-    // kinukuha logged in value
+    // Get logged-in status
     isLoggedIn() {
       return this.$store.state.isLoggedIn;
     }
   },
   methods: {
-    // tinatawag logout action sa store/index.js
+    // Call logout action in store/index.js
     logout() {
       this.$store.dispatch('logout');
       this.$router.push('/login');

@@ -1,25 +1,29 @@
 <template>
   <div>
+    <!-- Login form -->
     <form class="login-form" @submit.prevent="login">
       <div class="login-header">
         <h3 class="login-header-text">Log-in Page</h3>
       </div>
+      <!-- Username input -->
       <div class="input-field">
         <label for="username" class="input-label">Username:</label>
         <input type="text" v-model="username" placeholder="Enter username here" class="input-box">
       </div>
       <br>
-
+      <!-- Password input -->
       <div class="password-input">
         <div class="password-field">
           <label for="password" class="input-label">Password:</label>
           <input :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Enter password here" class="input-box">
+          <!-- Toggle button to show/hide password -->
           <button type="button" class="show-hide-button" @click="togglePasswordVisibility">
             {{ showPassword ? 'Hide' : 'Show' }}
           </button>
         </div>
       </div>
       <br>
+      <!-- Login button -->
       <button type="submit" class="login-button">Login</button>
     </form>
   </div>
@@ -29,21 +33,29 @@
 export default {
   data() {
     return {
+      // User input for username
       username: '',
+      // User input for password
       password: '',
+      // Flag to toggle password visibility
       showPassword: false
     };
   },
   methods: {
+    // Verify the entered credentials by calling the 'login' action in the store
     async login() {
       try {
+        // Attempt to login by dispatching 'login' action to the store
         await this.$store.dispatch('login', { username: this.username, password: this.password });
+        // If login is successful, alert and redirect to home page
         alert("Logged in successfully.");
         this.$router.push('/');
       } catch (error) {
+        // If login fails, alert with error message
         alert('Login failed: ' + error.message);
       }
     },
+    // Method to toggle password visibility
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
     }
